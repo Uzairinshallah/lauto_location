@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "623568454283",
-    "project_id": "lautolocation-87fb3",
-    "storage_bucket": "lautolocation-87fb3.appspot.com"
+    "project_number": "240655406690",
+    "project_id": "louto-location",
+    "storage_bucket": "louto-location.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:623568454283:android:eb2f891ac127b205ceca8e",
+        "mobilesdk_app_id": "1:240655406690:android:ed73c09d4649491c51a33b",
         "android_client_info": {
           "package_name": "com.uzi.lauto_location"
         }
       },
       "oauth_client": [
         {
-          "client_id": "623568454283-d3bkdhtcprp71s9g0k6di8amj60p22d5.apps.googleusercontent.com",
+          "client_id": "240655406690-ivo60vugh1lj4hfs0oa20svavnbbkute.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBXkZFTi-LnZvXyE3nwAamwO6aa2eWMUKQ"
+          "current_key": "AIzaSyCWTaS9IIcnWSyDGOI2Red55biuAaZOCq4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "623568454283-d3bkdhtcprp71s9g0k6di8amj60p22d5.apps.googleusercontent.com",
+              "client_id": "240655406690-ivo60vugh1lj4hfs0oa20svavnbbkute.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
