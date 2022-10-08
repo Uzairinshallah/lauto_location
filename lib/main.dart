@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lauto_location/provider/data_provider.dart';
+import 'package:lauto_location/screens/AuthPhone/check_user.dart';
 import 'package:lauto_location/screens/AuthPhone/signup_page.dart';
-import 'package:lauto_location/screens/home_page.dart';
+import 'package:lauto_location/screens/dashboard/dashboard.dart';
+import 'package:lauto_location/screens/dashboard/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,19 +47,20 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
             primarySwatch: MaterialColor(
-              CColors.PrimaryColor.value,
-              CColors.getSwatch(CColors.PrimaryColor),
+              CColors.primaryColor.value,
+              CColors.getSwatch(CColors.primaryColor),
             ),
             appBarTheme: AppBarTheme(
-                backgroundColor: CColors.PrimaryColor,
+                backgroundColor: CColors.primaryColor,
                 foregroundColor: Colors.white //here you can give the text color
                 ),
             accentColor: CColors.PrimaryAssentColor),
         home: FirebaseAuth.instance.currentUser == null
             ? SignUpPageP()
-            : const HomePage()
+            : const CheckUser(),
 
-        // home: MainAppbar(),
+
+    // home: MainAppbar(),
         );
   }
 }

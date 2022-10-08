@@ -6,13 +6,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lauto_location/extras/app_text_style.dart';
 import 'package:lauto_location/provider/data_provider.dart';
 import 'package:lauto_location/screens/AuthPhone/signup_form.dart';
 import 'package:lauto_location/screens/AuthPhone/signup_page.dart';
+import 'package:lauto_location/screens/dashboard/dashboard.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:provider/provider.dart';
 
-import '../home_page.dart';
+import '../../extras/colors.dart';
+import '../../widgets/get_button.dart';
+import '../dashboard/home_page.dart';
 
 enum MobileVerificationState {
   SHOW_MOBILE_FORM_STATE,
@@ -20,7 +24,8 @@ enum MobileVerificationState {
 }
 
 class SignUpPhone extends StatefulWidget {
-  SignUpPhone({Key? key}) : super(key: key);
+  bool isUser;
+  SignUpPhone({Key? key, required this.isUser}) : super(key: key);
 
   @override
   State<SignUpPhone> createState() => _SignUpPhoneState();
@@ -61,15 +66,17 @@ class _SignUpPhoneState extends State<SignUpPhone> {
             .doc(authCredential.user!.uid)
             .get();
         if (a.exists) {
-          print('Exists');
         }
         if (!a.exists) {
-          // print('Not exists');
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SignUpForm()));
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => SignUpForm(isUser : widget.isUser)),
+              (route) => false);
         } else
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => DashBoard()),
+              (route) => false);
       }
     } on FirebaseAuthException catch (e) {
       // TODO
@@ -77,8 +84,8 @@ class _SignUpPhoneState extends State<SignUpPhone> {
         showLoading = false;
       });
 
-      _scaffoldkey.currentState
-          ?.showSnackBar(SnackBar(content: Text(e.message.toString())));
+      // _scaffoldkey.currentState
+      //     ?.showSnackBar(SnackBar(content: Text(e.message.toString())));
     }
   }
 
@@ -117,10 +124,11 @@ class _SignUpPhoneState extends State<SignUpPhone> {
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 30,
         ),
-        ElevatedButton(
-          onPressed: () async {
+        GetButton(
+          text: 'Generate OTP',
+          onTap: () async {
             setState(() {
               showLoading = true;
             });
@@ -158,8 +166,8 @@ class _SignUpPhoneState extends State<SignUpPhone> {
                     setState(() {
                       showLoading = false;
                     });
-                    _scaffoldkey.currentState?.showSnackBar(SnackBar(
-                        content: Text(verificationFailed.message.toString())));
+                    // _scaffoldkey.currentState?.showSnackBar(SnackBar(
+                    //     content: Text(verificationFailed.message.toString())));
                   },
                   codeSent: (verificationId, resendingTocken) async {
                     setState(() {
@@ -172,19 +180,6 @@ class _SignUpPhoneState extends State<SignUpPhone> {
                   codeAutoRetrievalTimeout: (verificationId) async {});
             }
           },
-          child: Container(
-            width: double.infinity,
-            alignment: Alignment.center,
-            child: const Text(
-              'Generate OTP',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
         ),
         Spacer()
       ],
@@ -248,6 +243,7 @@ class _SignUpPhoneState extends State<SignUpPhone> {
       return Scaffold(
           key: _scaffoldkey,
           appBar: AppBar(
+            elevation: 0,
             backgroundColor: Colors.white,
             leading: GestureDetector(
               onTap: () {
@@ -259,9 +255,12 @@ class _SignUpPhoneState extends State<SignUpPhone> {
                 color: Colors.black,
               ),
             ),
-            title: const Text(
+            title: Text(
               "Sign Up with Phone",
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: AppTextStyle.quickSand(
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: CColors.primaryColor)),
               textAlign: TextAlign.center,
             ),
           ),

@@ -39,7 +39,7 @@ class TextFieldWidget extends StatelessWidget {
           FilteringTextInputFormatter.allow(RegExp(r'(^-?\d*\.?\d*)')),
       ],
       style: const TextStyle(
-        color: Colors.white,
+        color: Colors.black,
       ),
       decoration: InputDecoration(
         isDense: true,
@@ -50,7 +50,7 @@ class TextFieldWidget extends StatelessWidget {
           fontSize: 15,
         ),
         suffixIcon: (icon == true) ? Icon(Icons.color_lens_rounded) : null,
-        fillColor: CColors.orange,
+        fillColor: Colors.white,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(8),

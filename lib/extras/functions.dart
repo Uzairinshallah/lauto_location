@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'colors.dart';
 
 
@@ -45,7 +46,7 @@ class Functions{
 
 
   static showSnackBar(BuildContext context, String message, {Color? color}){
-    color ??= CColors.PrimaryColor;
+    color ??= CColors.primaryColor;
     final snackBar = SnackBar(
       backgroundColor: color,
       content: Text(message,
@@ -56,5 +57,27 @@ class Functions{
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  static showSignInDialog(BuildContext context) async {
+    await Future.delayed(const Duration(milliseconds: 50));
+    AlertDialog alert = AlertDialog(
+      elevation: 0,
+      contentPadding: EdgeInsets.zero,
+      backgroundColor: Colors.transparent.withOpacity(0),
+      content: SpinKitChasingDots(
+        color: CColors.primaryColor,
+        size: 50.0,
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

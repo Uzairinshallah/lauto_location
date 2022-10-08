@@ -1,6 +1,7 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:lauto_location/screens/AuthPhone/register_as.dart';
+import 'package:lauto_location/screens/AuthPhone/signup_form.dart';
 import 'package:lauto_location/screens/AuthPhone/signup_phone_auth_page.dart';
 
 import '../../extras/colors.dart';
@@ -25,14 +26,12 @@ class SignUpPageP extends StatelessWidget {
   Widget webView(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: CColors.PrimaryColor,
+      color: CColors.primaryColor,
       child: Align(
         alignment: Alignment.center,
         child: Container(
           width: screenWidth,
-          child: Card(
-              elevation: 10,
-              child: mainWidget(context)),
+          child: Card(elevation: 10, child: mainWidget(context)),
         ),
       ),
     );
@@ -63,27 +62,24 @@ class SignUpPageP extends StatelessWidget {
             SizedBox(height: screenHeight * 0.03),
             // signUpB(context),
             SizedBox(height: screenHeight * 0.06),
-
           ],
         ),
       ),
     );
   }
 
-
-
   Widget txt3() {
     return RichText(
       text: TextSpan(children: <TextSpan>[
-        TextSpan(
-            text: "By joining, you agree to Hire.mv",
+        const TextSpan(
+            text: "By joining, you agree to LautoLocations",
             style: TextStyle(
               color: Color(0xFF606060),
             )),
         TextSpan(
             text: "  Terms of Service",
             style: TextStyle(
-              color: CColors.PrimaryColor,
+              color: CColors.primaryColor,
             ))
       ]),
     );
@@ -95,7 +91,7 @@ class SignUpPageP extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (ctx) {
-              return SignUpPhone();
+              return RegisterAs();
             },
           ),
         );
@@ -105,7 +101,7 @@ class SignUpPageP extends StatelessWidget {
         width: screenWidth * 0.9,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(3.0),
-            color: CColors.PrimaryColor),
+            color: CColors.primaryColor),
         alignment: Alignment.center,
         child: const Text(
           'Continue with Phone No',
@@ -162,24 +158,32 @@ class SignUpPageP extends StatelessWidget {
 
   Widget txt2() {
     return Text(
-        "Join our growing freelance community to offer your professional services, connect with customers, and get paid on Hire.mv trusted platform.",
+        "Lauto Locations in Morocco provide best services for Car Hire Rentals."
+        " We offer All Type of Cars & Jeeps with Automatic Transmission.",
         style: TextStyle(
           color: Colors.black,
         ));
   }
 
   Widget txt1() {
-    return Text("Join Hire.mv",
+    return Text("Lauto Locations",
         style: TextStyle(
-            color: Colors.black,
+            color: CColors.primaryColor,
             fontWeight: FontWeight.bold,
             fontSize: 22));
   }
 
   Widget imgWidget() {
     return Container(
-        height: screenHeight * 0.08,
-        width: screenWidth * 0.15,
-        child: Image.asset('assets/images/fiverlogo.png'));
+        height: 100,
+        width: 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+          'assets/images/Lauto.png',
+        )));
   }
 }

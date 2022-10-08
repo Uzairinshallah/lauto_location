@@ -1,7 +1,16 @@
 class Constants{
 
-  static final List<Map<String, String>> codes = [
+  static var field = [
+    'Lamborghini',
+    'Ford',
+    'Ferrari',
+    'Porsche',
+    'Jeep',
+    'Toyota',
+  ];
 
+
+  static final List<Map<String, String>> codes = [
     {
       "name": "Pakistan",
       "code": "PK",

@@ -4,7 +4,8 @@ class CColors{
   // static final PrimaryColor =  Color(0xFF1CC072);
   // static final PrimaryAssentColor =  Color(0xFF73DFAB);
 
-  static final PrimaryColor =  Color(0xFF38CEEF);
+  static final primaryColor =  Color(0xFF1A17A6);
+  static final secColor =  Color(0xFF5C14F5);
   static final PrimaryAssentColor =  Color(0xFF38CEEF);
   // static final PrimaryDarkColor =  Color(0xFF17b369);
 

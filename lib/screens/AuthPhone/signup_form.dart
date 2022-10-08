@@ -3,19 +3,26 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lauto_location/extras/app_text_style.dart';
 import 'package:lauto_location/screens/AuthPhone/signup_page.dart';
+import 'package:lauto_location/screens/dashboard/dashboard.dart';
 import 'package:lauto_location/widgets/textfield_widget.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:provider/provider.dart';
 
 import '../../extras/colors.dart';
 import '../../extras/functions.dart';
+import '../../models/agency_model.dart';
 import '../../models/user_model.dart';
 import '../../provider/data_provider.dart';
-import '../home_page.dart';
+import '../../widgets/get_button.dart';
+import '../../widgets/logo_image_widget.dart';
+import '../dashboard/home_page.dart';
+import '../dashboard_a/dashboard_a.dart';
 
 class SignUpForm extends StatefulWidget {
-  SignUpForm({Key? key}) : super(key: key);
+  bool isUser;
+  SignUpForm({Key? key, required this.isUser}) : super(key: key);
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -50,24 +57,7 @@ class _SignUpFormState extends State<SignUpForm> {
       model = value;
       return Consumer(builder: (context, value, child) {
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            leading: GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => SignUpPageP()));
-              },
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-            ),
-            title: const Text(
-              "Sign Up with Phone",
-              style: TextStyle(fontSize: 20, color: Colors.black),
-              textAlign: TextAlign.center,
-            ),
-          ),
+
           body: portraitView(context, model),
         );
       });
@@ -75,43 +65,69 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Widget portraitView(BuildContext context, DataProvider model) {
-    return Container(
-      width: screenWidth,
-      child: Padding(
-        padding: EdgeInsets.only(
-            left: screenWidth * 0.05,
-            top: screenHeight * 0.02,
-            right: screenWidth * 0.05),
-        child: Column(
+    return Column(
+      children: [
+        SizedBox(
+          height: 45,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                phoneWidget(),
-              ],
-            ),
-            SizedBox(height: screenHeight * 0.02),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFieldWidget(
-                    hintText: "User Name", controller: userNameController),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextFieldWidget(hintText: "City", controller: cityController),
-                const SizedBox(
-                  height: 10,
-                ),
-                invalidUsernameWIdget(),
-              ],
-            ),
-            SizedBox(height: screenHeight * 0.05),
-            registerButton(context),
-            SizedBox(height: screenHeight * 0.02),
-            tosText(),
+            Text(
+              "Sign Up with Phone",
+              textAlign: TextAlign.center,
+              style: AppTextStyle.quickSand(
+                style: TextStyle(fontSize: 20, color: CColors.primaryColor, fontWeight: FontWeight.w700),
+              ),
+            )
           ],
         ),
-      ),
+        LogoImageWidget(),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          width: screenWidth,
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: screenWidth * 0.05,
+                top: screenHeight * 0.02,
+                right: screenWidth * 0.05),
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    // phoneWidget(),
+                  ],
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFieldWidget(
+                        hintText: "User Name", controller: userNameController),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFieldWidget(
+                        hintText: "City", controller: cityController),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    invalidUsernameWIdget(),
+                  ],
+                ),
+                SizedBox(height: screenHeight * 0.05),
+                GetButton(text: 'Sign Up', onTap: (){
+                  registerUser();
+                },),
+                SizedBox(height: screenHeight * 0.02),
+                tosText(),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -119,14 +135,14 @@ class _SignUpFormState extends State<SignUpForm> {
     return RichText(
       text: TextSpan(children: <TextSpan>[
         const TextSpan(
-            text: "By joining, you agree to Hire.mv",
+            text: "By joining, you agree to LautoLocations",
             style: TextStyle(
               color: Color(0xFF606060),
             )),
         TextSpan(
             text: "  Terms of Services",
             style: TextStyle(
-              color: CColors.PrimaryColor,
+              color: CColors.primaryColor,
             ))
       ]),
     );
@@ -135,8 +151,6 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget registerButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
-        print('DONEDONE');
-        // if(model.checkUserName(true))
         registerUser();
       },
       child: Container(
@@ -183,17 +197,21 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void registerUser() async {
-    print('qqqqqqqqqqqqq');
+    print('register');
+    print(widget.isUser);
+    print(widget.isUser);
+    print('register');
+
     showUploadingDialog(context);
     await checkUserName();
     if (model.isUNChecked) {
       try {
-        await setUser();
+        (widget.isUser) ? await setUser() : await setAgency();
         Functions.showSnackBar(context, "Registered Successfully");
         Navigator.pop(context);
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
+            MaterialPageRoute(builder: (context) => (widget.isUser) ? DashBoard() : DashBoardA()),
             (route) => false);
       } catch (e) {
         Navigator.pop(context);
@@ -222,6 +240,7 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Future<void> setUser() async {
+    print('User');
     final auth = FirebaseAuth.instance;
     final collectionRef = FirebaseFirestore.instance.collection('users');
     UserModel userModel = UserModel(
@@ -230,7 +249,21 @@ class _SignUpFormState extends State<SignUpForm> {
       userName: userNameController.text.trim(),
       city: cityController.text,
     );
-    await collectionRef.doc(auth.currentUser!.uid).set(userModel.toMap()) ;
+    await collectionRef.doc(auth.currentUser!.uid).set(userModel.toMap());
+    // model.getUserInfo();
+  }
+
+  Future<void> setAgency() async {
+    print('agency');
+    final auth = FirebaseAuth.instance;
+    final collectionRef = FirebaseFirestore.instance.collection('agency');
+    AgencyModel agencyModel = AgencyModel(
+      id: auth.currentUser!.uid,
+      phone: phoneController.text.trim(),
+      name: userNameController.text.trim(),
+      city: cityController.text,
+    );
+    await collectionRef.doc(auth.currentUser!.uid).set(agencyModel.toMap());
     // model.getUserInfo();
   }
 
@@ -255,8 +288,6 @@ class _SignUpFormState extends State<SignUpForm> {
       },
     );
   }
-
-
 
   @override
   void dispose() {
