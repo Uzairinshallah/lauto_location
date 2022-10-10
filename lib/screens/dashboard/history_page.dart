@@ -86,7 +86,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                         child: Center(
                           child: Text(
-                            "Salons",
+                            "Upcomming ",
                             style: AppTextStyle.quickSand(
                               style: TextStyle(
                                   color: (controller.toggleIndex == 0)
@@ -119,7 +119,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                         child: Center(
                           child: Text(
-                            "Employee",
+                            "Completed",
                             style: AppTextStyle.quickSand(
                               style: TextStyle(
                                   color: (controller.toggleIndex == 1)

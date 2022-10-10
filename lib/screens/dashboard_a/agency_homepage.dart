@@ -9,6 +9,7 @@ import '../../models/car_model.dart';
 import '../../widgets/carWidget.dart';
 import '../../widgets/search_field.dart';
 import '../drawer/get_drawer.dart';
+import 'add_car.dart';
 
 class AgencyHomepage extends StatefulWidget {
   const AgencyHomepage({Key? key}) : super(key: key);
@@ -97,6 +98,7 @@ class _AgencyHomepageState extends State<AgencyHomepage> {
         alignment: Alignment.topRight,
         child: InkWell(
           onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => AddCar()));
             // Navigator.push(context, Mater)
           },
           child: Container(

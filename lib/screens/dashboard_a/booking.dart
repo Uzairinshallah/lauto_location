@@ -39,7 +39,7 @@ class _BookingPageState extends State<BookingPage> {
                         width: 10,
                       ),
                       Text(
-                        'Booking History',
+                        'dBooking History',
                         style: AppTextStyle.quickSand(
                           style: TextStyle(
                               color: CColors.primaryColor,

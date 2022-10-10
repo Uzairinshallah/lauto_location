@@ -42,6 +42,7 @@ class TextFieldWidget extends StatelessWidget {
         color: Colors.black,
       ),
       decoration: InputDecoration(
+
         isDense: true,
         filled: true,
         hintText: hintText,
@@ -49,13 +50,15 @@ class TextFieldWidget extends StatelessWidget {
           color: CColors.darkgray,
           fontSize: 15,
         ),
+
         suffixIcon: (icon == true) ? Icon(Icons.color_lens_rounded) : null,
         fillColor: Colors.white,
-        border: const OutlineInputBorder(
+        border:  OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(8),
           ),
-          borderSide: BorderSide(width: 0, style: BorderStyle.none),
+          borderSide: BorderSide(color: CColors.primaryColor)
+          // borderSide: BorderSide(width: 0, style: BorderStyle.none),
         ),
       ),
     );

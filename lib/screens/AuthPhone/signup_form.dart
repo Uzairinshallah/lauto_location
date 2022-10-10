@@ -65,69 +65,71 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Widget portraitView(BuildContext context, DataProvider model) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 45,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Sign Up with Phone",
-              textAlign: TextAlign.center,
-              style: AppTextStyle.quickSand(
-                style: TextStyle(fontSize: 20, color: CColors.primaryColor, fontWeight: FontWeight.w700),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 45,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Sign Up with Phone",
+                textAlign: TextAlign.center,
+                style: AppTextStyle.quickSand(
+                  style: TextStyle(fontSize: 20, color: CColors.primaryColor, fontWeight: FontWeight.w700),
+                ),
+              )
+            ],
+          ),
+          LogoImageWidget(),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: screenWidth,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: screenWidth * 0.05,
+                  top: screenHeight * 0.02,
+                  right: screenWidth * 0.05),
+              child: Column(
+                children: [
+                  Column(
+                    children: [
+                      // phoneWidget(),
+                    ],
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFieldWidget(
+                          hintText: "User Name", controller: userNameController),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextFieldWidget(
+                          hintText: "City", controller: cityController),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      invalidUsernameWIdget(),
+                    ],
+                  ),
+                  SizedBox(height: screenHeight * 0.05),
+                  GetButton(text: 'Sign Up', onTap: (){
+                    registerUser();
+                  },),
+                  SizedBox(height: screenHeight * 0.02),
+                  tosText(),
+                ],
               ),
-            )
-          ],
-        ),
-        LogoImageWidget(),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-          width: screenWidth,
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: screenWidth * 0.05,
-                top: screenHeight * 0.02,
-                right: screenWidth * 0.05),
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    // phoneWidget(),
-                  ],
-                ),
-                SizedBox(height: screenHeight * 0.02),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFieldWidget(
-                        hintText: "User Name", controller: userNameController),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFieldWidget(
-                        hintText: "City", controller: cityController),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    invalidUsernameWIdget(),
-                  ],
-                ),
-                SizedBox(height: screenHeight * 0.05),
-                GetButton(text: 'Sign Up', onTap: (){
-                  registerUser();
-                },),
-                SizedBox(height: screenHeight * 0.02),
-                tosText(),
-              ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

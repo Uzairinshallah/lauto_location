@@ -63,72 +63,72 @@ class UpcomingBookings extends StatelessWidget {
                                   color: CColors.primaryColor)),
                         ),
                         Text(
-                          "address",
+                          "Ferraris are what dreams are made of. Fast, sexy, and highly exclusive, these Italian supercars push ",
                           style: AppTextStyle.quickSand(
                               style: TextStyle(
                                   fontSize: 8,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.black38)),
                         ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 20,
-                              width: 67,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: CColors.primaryColor,
-                                  width: 1,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Icon(
-                                    Icons.star_rounded,
-                                    color: CColors.primaryColor,
-                                    size: 12,
-                                  ),
-                                  Text(
-                                    '4.6',
-                                    style: AppTextStyle.spliceSans(
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
-                                        color: CColors.primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    '(117)',
-                                    style: AppTextStyle.spliceSans(
-                                      style: TextStyle(
-                                        fontSize: 8,
-                                        fontWeight: FontWeight.w400,
-                                        color: CColors.primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 17,
-                            ),
-                            // Expanded(
-                            //   child: Text(
-                            //     Constants.listToString(model.fields),
-                            //     style: AppTextStyle.quickSand(
-                            //         style: TextStyle(
-                            //             fontSize: 8.sp,
-                            //             fontWeight: FontWeight.w700,
-                            //             color: CColors.textBlack)),
-                            //   ),
-                            // ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Container(
+                        //       height: 20,
+                        //       width: 67,
+                        //       decoration: BoxDecoration(
+                        //         borderRadius: BorderRadius.circular(20),
+                        //         border: Border.all(
+                        //           color: CColors.primaryColor,
+                        //           width: 1,
+                        //         ),
+                        //       ),
+                        //       child: Row(
+                        //         mainAxisAlignment:
+                        //             MainAxisAlignment.spaceAround,
+                        //         children: [
+                        //           Icon(
+                        //             Icons.star_rounded,
+                        //             color: CColors.primaryColor,
+                        //             size: 12,
+                        //           ),
+                        //           Text(
+                        //             '4.6',
+                        //             style: AppTextStyle.spliceSans(
+                        //               style: TextStyle(
+                        //                 fontSize: 10,
+                        //                 fontWeight: FontWeight.w500,
+                        //                 color: CColors.primaryColor,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           Text(
+                        //             '(117)',
+                        //             style: AppTextStyle.spliceSans(
+                        //               style: TextStyle(
+                        //                 fontSize: 8,
+                        //                 fontWeight: FontWeight.w400,
+                        //                 color: CColors.primaryColor,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //     SizedBox(
+                        //       width: 17,
+                        //     ),
+                        //     // Expanded(
+                        //     //   child: Text(
+                        //     //     Constants.listToString(model.fields),
+                        //     //     style: AppTextStyle.quickSand(
+                        //     //         style: TextStyle(
+                        //     //             fontSize: 8.sp,
+                        //     //             fontWeight: FontWeight.w700,
+                        //     //             color: CColors.textBlack)),
+                        //     //   ),
+                        //     // ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),
